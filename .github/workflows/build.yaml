@@ -17,7 +17,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y mesa-common-dev libx11-dev libasound2-dev
+        sudo apt-get install -y mesa-common-dev libx11-dev xorg-dev libasound2-dev
 
     - name: Build
       run: |
