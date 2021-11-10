@@ -29,12 +29,14 @@ jobs:
 
     - name: Check Product
       run: |
+        cd build
         ls -l
         ls -l pacman
         file pacman
 
     - name: Package Product
       run: |
+        cd build
         chmod +x pacman
         zip -r pacman-linux.zip pacman
 
@@ -42,7 +44,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: pacman-linux.zip
-        path: pacman-linux.zip
+        path: build/pacman-linux.zip
 
   MacOS:
     runs-on: macOS-latest
@@ -50,10 +52,6 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-
-    # - name: Install Dependencies
-    #   run: |
-    #     brew install glfw3
 
     - name: Build
       run: |
@@ -65,12 +63,14 @@ jobs:
 
     - name: Check Product
       run: |
+        cd build
         ls -l
         ls -l pacman
         file pacman
 
     - name: Package Product
       run: |
+        cd build
         chmod +x pacman
         zip -r pacman-mac.zip pacman
 
@@ -78,7 +78,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: pacman-mac.zip
-        path: pacman-mac.zip
+        path: build/pacman-mac.zip
 
   Emscripten:
     runs-on: ubuntu-18.04
@@ -105,15 +105,17 @@ jobs:
 
     - name: Check Product
       run: |
+        cd build
         ls -l
         file pacman.*
 
     - name: Package Product
       run: |
+        cd build
         zip -r pacman-web.zip pacman.html pacman.wasm pacman.js
 
     - name: Archive Product
       uses: actions/upload-artifact@v1
       with:
         name: pacman-web.zip
-        path: pacman-web.zip
+        path: build/pacman-web.zip
